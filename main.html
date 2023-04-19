@@ -36,6 +36,61 @@
 
 <script>
 //Your code goes here 
+	let items = document.querySelectorAll('.item');
+
+
+items.forEach((item) => {
+    item.setAttribute("draggable", "true");
+
+    item.addEventListener("dragstart", () => {
+        item.classList.add("dragging");
+    });
+
+    item.addEventListener("dragend", () => {
+        item.classList.remove("dragging");
+    });
+
+    item.addEventListener("dragenter", (e) => {
+       e.preventDefault();
+        item.classList.add("dropzone");
+
+
+    });
+
+    item.addEventListener("dragleave", (e) => {
+        e.preventDefault();
+
+        item.classList.remove("dropzone");
+
+    });
+
+    item.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        console.log("dropped");
+       let some = document.querySelector(".dragging");
+       let dropzone = document.querySelector(".dropzone");
+       let someclass = some.getAttribute("class");
+       console.log(someclass);
+
+       let dropclass = dropzone.getAttribute("class");
+
+       let temp = someclass;
+
+       dropzone.setAttribute("class",someclass);
+       some.setAttribute("class",dropclass);
+
+
+       console.log(dropclass);
+       
+       
+
+       
+        // swapDiv(some, dropzone);
+
+    //    dropzone.appendChild(some);
+
+    });
+});
 </script>
 
   </body>
